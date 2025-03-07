@@ -1,0 +1,15 @@
+
+<div>
+    <form ng-submit="createPartner()">
+        <div class="form-group">
+            <label for="partnerText">Text</label>
+            <input type="text" id="partnerText" ng-model="newPartner.text" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="partnerCode">Code</label>
+            <input type="text" id="partnerCode" ng-model="newPartner.code" class="form-control" required/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="createPartner">Save</button>
+        <a href="#/search" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
