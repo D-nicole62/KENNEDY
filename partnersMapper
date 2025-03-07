@@ -1,0 +1,31 @@
+package org.openlmis.core.repository.mapper;
+
+import org.apache.ibatis.annotations.*;
+import org.openlmis.core.domain.Partner;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface PartnerMapper {
+
+    @Insert("INSERT INTO owners (code, text) VALUES (#{code}, #{text})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    Long addPartner(Partner partner);
+
+    @Select("SELECT * FROM owners")
+    List<Partner> getAllPartners();
+
+    @Select("SELECT * FROM owners WHERE code = #{code}")
+    Partner getPartnerByCode(String code);
+
+    @Update("UPDATE owners SET text = #{text} WHERE code = #{code}")
+    void updatePartner(Partner partner);
+
+    @Delete("DELETE FROM owners WHERE code = #{code}")
+    void deleteByCode(String code);
+
+    @Select("SELECT * FROM owners WHERE text LIKE #{searchTerm} OR code LIKE #{searchTerm}")
+    List<Partner> searchPartners(@Param("searchTerm") String searchTerm);
+}
+
